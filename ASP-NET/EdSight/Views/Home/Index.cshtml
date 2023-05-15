@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center" style="min-height: 80vh;padding-top: 20px;">
+    <h1 class="display-4">Welcome To EdSight</h1>
+    <br>
+    <h3>Connect with friends and the world around you on EdSight</h3>
+    <p>Share your photos, poems, essays and more and make people inspired</p>
+    <br>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <h3>Please login to check the latest posts of your friends and people</h3>
+    }
+    <br>
+    <h4 class="px-4">References</h4>
+    <hr>
+    <p>Gradient for the navbar by <a href="https://digitalsynopsis.com/design/beautiful-color-ui-gradients-backgrounds/" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
+    <p>Box shadows by <a href="https://getcssscan.com/css-box-shadow-examples" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
+    <br>
+    <br>
+    <hr>
+</div>

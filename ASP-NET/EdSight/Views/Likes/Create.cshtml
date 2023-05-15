@@ -1,0 +1,43 @@
+﻿@model EdSight.Models.Like
+
+@{
+    ViewData["Title"] = "Create";
+    // code for getting the id from the URL is from : https://stackoverflow.com/questions/979532/how-to-get-the-current-route-id-within-a-view-from-the-url-asp-net-mvc  
+    // credits to: Poyi Hong  (stack overflow)
+    var post_id = Url.ActionContext.RouteData.Values["id"];
+}
+
+<h1>Create</h1>
+
+<h4>Like</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!-- After learning authorization the user id will be added automatically -->
+            @* get the UserId using the user who is logged in *@
+            <div class="form-group">
+                <label asp-for="TargetId" class="control-label"></label>
+                <input asp-for="TargetId" class="form-control" />
+                <span asp-validation-for="TargetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input hidden asp-for="PostId" class="form-control" value="@post_id" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script> alert("The like functionality doesnt work it will be added after learning authentication") </script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EdSight.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1 class="d-flex flex-row justify-content-between align-items-center">
+    Your Feed  <span>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a asp-action="Create"><i class="text-dark far fa-plus-square fa-1x"></i></a>
+        }
+    </span>
+</h1>
+
+
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            bool picturePost = true;
+            if (item.Picture == null)
+            {
+                picturePost = false;
+            }
+        <div class="post-container container my-4">
+            <h4 class="fs-4 my-2 py-2">@item.Location</h4>
+            <hr class="my-2">
+            <article class="img-container">
+                @if (picturePost)
+                {
+                    <div class="container-sm py-1 d-flex flex-row justify-content-center align-items-center">
+                        <img class="card-img" src="~/img/posts/@item.Picture" alt="Post">
+                    </div>
+                }
+                else
+                {
+                    <div class="container-sm py-1">
+                        <p class="lead">@item.Content</p>
+                    </div>
+                }
+
+            </article>
+            <hr>
+            <div class="container my-2">
+                <p>@item.Caption</p>
+            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <a asp-action="Edit" class="btn btn-primary mx-1" asp-route-id="@item.PostId">Edit</a>
+                        <a asp-action="Delete" class="btn btn-danger mx-1" asp-route-id="@item.PostId">Delete</a>
+                    </div>
+                    <div class="my-lg-2">
+                        <a asp-controller="Likes" asp-action="Create" asp-route-id="@item.PostId"><i class="far fa-heart fa-2x"></i></a>
+                    </div>
+                </div>
+            }
+
+        </div>
+        }
+    </div>
+
+
+
